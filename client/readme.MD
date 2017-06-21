@@ -29,9 +29,13 @@ The following stack is used:
 
  - Aurelia as a SPA framework
  - Typescript for javascript development
- - Pug/Jade for templates to be used 
+ - Pug/Jade for templates to be used
+ - Less for css stylesheets 
 
- - Webpack for compilation and bundling
+Webpack for compilation and bundling: 
+ - typescript -> javascript
+ - pug -> html
+ - less -> css
 
 ### Extra info: Aurelia bootstrap sequence
 
@@ -41,8 +45,8 @@ The following stack is used:
  - In the main module there is a method `start()`. This starts the application;
  - In the main module there is also a configuration of the ViewLocator, telling aurelia not to look for HTML files (as is default) but to look for .pug files The pug files are compiled by webpack from jade/pug;
  - The main module checks if the user is logged in on the server by checking if there is a `currentUser`;
- - If there is a currnetUser the application starts by setting the root (the bodey tag in this case) to the app module (app.ts and app.pug)
- - If there is *no* currentUser the application starts the public part of the app (showing a way to login on the server, creating an account etc)
+ - If there is a currentUser the application starts by setting the root (the body tag in this case) to the app module (app.ts and app.pug)
+ - If there is no currentUser the application starts the public part of the app (for example showing a way to login on the server, creating an account etc)
  - The app module is a very simple one : it configures a router and that takes care of the viewport(s) in the template (app.pug);
  - The default route is 'main', it defines a main-page module: Main Page is the first actual page of the application
 
