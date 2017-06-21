@@ -1,0 +1,7 @@
+*.js
+*.map
+npm-debug.log
+**/node_modules/
+
+client/dist/
+!client/webpack.config.js
