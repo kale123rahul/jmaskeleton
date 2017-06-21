@@ -1,0 +1,43 @@
+@import (reference) './all-includes';
+
+body {
+    & > section {
+        height:100%;
+        min-height:100vh;
+        display:flex;
+        align-content: stretch;
+        align-items: stretch;
+
+        & > .sidebar {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: 240px;
+            padding:@default-spacing;
+        }
+
+        & > router-view, & > div.main {
+            padding:@default-spacing;
+            display:block;
+            flex: 1;
+        }
+        
+    }
+}
+
+body {
+    & > .splash {
+        height:100%;
+        min-height:100vh;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+
+        .message {
+                max-width: 50%;
+                .h2 {font-size : 30px;}
+                .h1 {font-size : 50px;}
+            }
+    }
+}
+
+

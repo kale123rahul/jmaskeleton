@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": false,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "allowJs": false,
+    "declaration": false,
+    "lib": [
+      "es2017", "dom"
+    ]
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "dist-prod",
+    "out",
+    "test",
+    "*.1.ts",
+    "*.2.ts"
+  ]
+}
