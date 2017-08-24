@@ -1,1 +1,109 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+ <script type="text/javascript" src="http://localhost:8080/angularjsform/angularlogic.js"></script>
+ <script>
+  //Defining a Angular module
+        var myApp = angular.module('myApp', []);
+        //Defining a Angular Controller
+        myApp.controller('MyCtrl', ['$scope', '$http',function ($scope, $http) {
+			 $scope.btnName = "SAVE";
+			 $scope.newaccount = 'New Account';
+			 $scope.addaccount = false;
+            //Create a new person
+            $scope.createPerson = function (data) {
+                //Defining $http service for creating a person
+                $http.post("http://localhost:8080/angularjsform/insert.php",{
+					'name':$scope.newperson.name,
+					'email':$scope.newperson.email,
+					'city':$scope.newperson.city,
+					'address':$scope.newperson.address,
+					'btnName':$scope.btnName,
+					'id':$scope.newperson.id})
+				.success(function (data) {
+                    //Showing Success message
+				    $scope.btnName = "SAVE";
+				location.reload();
+   
+                })
+                .error(function (error) {
+                    //Showing error message
+                   $scope.status = 'Unable to create a person: ';
+                });
+				
+            }
+	}
+
+        ]);
+		
+ </script>
+ <style>
+ .formcolor{
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 12px;
+	background: #e9ebee;
+    color: #353131;
+	
+}
+body{
+background: #e9ebee;
+    color: #353131;
+}
+
+.addupdate{
+	margin-top: 12px;
+	    width: 100%;
+}
+.error{
+	color:red;
+}
+.formstyle{
+margin: 0 auto;
+    width: 380px;
+}
+
+ 
+ 
+ </style>
+<body>
+    <div data-ng-app="myApp" class="container" data-ng-controller="MyCtrl">
+			<div class="formstyle">
+				  <form name="formvalidation" class="formcolor">
+		       <h4 class="title" ng-model="newaccount">{{ newaccount }}</h4>
+                <label>Name <span class="error"> * </span></label>
+                <input type="text" class="form-control" name="name" id="Name" checkDuplicateName existing-names="persons" tooltip  data-ng-model="newperson.name" placeholder="Name" required />
+				<span class="error" ng-show="formvalidation.name.$dirty && formvalidation.name.$error.required">Name is required *</span><br>
+				
+                <label>Email <span class="error">*</span></label>
+                <input type="text" class="form-control" name="email" id="Email" data-ng-model="newperson.email" placeholder="Email" required/>
+				<span class="error" ng-show="formvalidation.email.$dirty && formvalidation.email.$error.required">Email is required *</span><br>
+                <label>City <span class="error">*</span></label>
+                <input type="text" class="form-control" name="city" placeholder="City" data-ng-model="newperson.city" id="City" required/>
+				<span class="error" ng-show="formvalidation.city.$dirty && formvalidation.city.$error.required">City is required *</span><br>
+                <label>Addrsess <span class="error">*</span></label>
+                <textarea type="text" class="form-control" name="address" placeholder="Address"  data-ng-model="newperson.address" id="Address" required></textarea>
+				<span class="error" ng-show="formvalidation.address.$dirty && formvalidation.address.$error.required">Address is required *</span>
+				<input type="hidden" ng-model="newperson.id"/>
+               <a type="button" class="btn btn-success addupdate" value="{{ btnName }}"   ng-disabled="formvalidation.$invalid" data-ng-click="createPerson()" >{{ btnName }}</a>
+      
+  </form>
+ 
+  </div>
+    </div>
+</body>
+</html>
